@@ -1,11 +1,18 @@
 version: "3.7"
 
 services:
-    core:
-        container_name: core
-        ports:
-            - 8000:8000
-        build:
-            context: auth_api/python
-        volumes:
-            - ./auth_api/python:/core
+  core:
+    container_name: core
+    ports:
+      - 8000:8000
+    build:
+      context: auth_api/python
+      args:
+        - DATABASE_HOST=${DATABASE_HOST}
+        - DATABASE_USER=${DATABASE_USER}
+        - DATABASE_PASS=${DATABASE_PASS}
+        - DATABASE_NAME=${DATABASE_NAME}
+        - DATABASE_PORT=${DATABASE_PORT}
+    volumes:
+      - ./auth_api/python:/core
+      
