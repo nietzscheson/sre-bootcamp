@@ -13,6 +13,7 @@ services:
         - DATABASE_PASS=${DATABASE_PASS}
         - DATABASE_NAME=${DATABASE_NAME}
         - DATABASE_PORT=${DATABASE_PORT}
+        - JWT_SECRET=${JWT_SECRET}
     volumes:
       - ./auth_api/python:/core
       
