@@ -3,10 +3,13 @@ version: "3.7"
 services:
   core:
     container_name: core
+    image: nietzscheson/wize-cristian-angulo:latest
     ports:
       - 8000:8000
     build:
       context: auth_api/python
+      cache_from: 
+        - nietzscheson/wize-cristian-angulo:latest
       args:
         - DATABASE_HOST=${DATABASE_HOST}
         - DATABASE_USER=${DATABASE_USER}
