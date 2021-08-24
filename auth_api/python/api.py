@@ -1,12 +1,23 @@
+import os
 from flask import Flask
 from flask import jsonify
 from flask import request
 from methods import Token, Restricted
+from flask_sqlalchemy import SQLAlchemy
+
+env = os.environ
 
 app = Flask(__name__)
 login = Token()
 protected = Restricted()
 
+app = Flask(__name__)
+app.config[
+    "SQLALCHEMY_DATABASE_URI"
+] = f'mysql+mysqlconnector://{env["DATABASE_USER"]}:{env["DATABASE_PASS"]}@{env["DATABASE_HOST"]}/{env["DATABASE_NAME"]}'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
 
 # Just a health check
 @app.route("/")

@@ -21,3 +21,5 @@ format:
 	docker-compose run --rm core black .
 lint:
 	docker-compose run --rm core black . --check
+shell:
+	docker-compose exec core flask shell
